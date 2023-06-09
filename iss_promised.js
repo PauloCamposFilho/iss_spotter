@@ -16,14 +16,12 @@ const fetchISSFlyOverTimes = (body) => {
 };
 
 const nextISSTimesForMyLocation = () => {
-  fetchMyIP()
-    .then(fetchCoordsByIP)
-    .then(fetchISSFlyOverTimes)
-    .then(body => {
-      const passTimes = JSON.parse(body).response;
-      for (let passOver of passTimes) {
-        console.log("Next pass at", new Date(passOver.risetime * 1000).toString());
-      }
+  return fetchMyIP()
+    .then(data => fetchCoordsByIP(data))
+    .then(data => fetchISSFlyOverTimes(data))
+    .then(data => {
+      const passTimes = JSON.parse(data).response;
+      return passTimes;      
     });
 };
 

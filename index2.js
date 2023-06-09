@@ -1,3 +1,8 @@
 const { nextISSTimesForMyLocation } = require("./iss_promised");
 
-nextISSTimesForMyLocation();
+nextISSTimesForMyLocation()
+  .then(passTimes => {
+    for (let passOver of passTimes) {
+      console.log("Next pass at", new Date(passOver.risetime * 1000).toString());
+    }
+  });
