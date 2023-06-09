@@ -13,7 +13,7 @@ const fetchMyIP = (callback) => {
 };
 
 const fetchCoordsByIP = (ip, callback) => {
-  request(API_COORDS_ENDPOINT, (error, response, body) => {
+  request(API_COORDS_ENDPOINT + ip, (error, response, body) => {
     if (error) callback(error, null);
     const JSONResponse = JSON.parse(body);
     
